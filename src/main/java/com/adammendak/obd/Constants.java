@@ -7,6 +7,17 @@ public class Constants {
     static final String LOGIN = "amendak";
     static final String PASSWORD = "Warahi1986";
 
+    static final String INSERT_TEMPLATE = "INSERT INTO %s VALUES(%s)";
+    static final String TRUNCATE_TEMPLATE = "TRUNCATE TABLE %s";
+
+    static final String[] SUBJECTS = {"BIOLOGIA", "MATEMATYKA", "POLSKI", "ANGIELSKI"};
+    static final String[] TEACHER_NAMES = {"ADAM", "MACIEK", "RENATA", "ALICJA"};
+    static final String[] TEACHER_SURNAMES = {"ABACKI", "BABACKI", "CABACKA", "DABACKA"};
+    static final String[] GRADE_DESCRIPTIVE = {"NIEDOSTATECZNY", "MIERNY", "DOSTATECZNY", "DOBRY", "BARDZO DOBRY", "CELUJACY"};
+    static final String[] GRADE_FLOAT = {"1.0", "2.0", "3.0", "4.0", "5.0", "6.0"};
+    static final String[] STUDENT_SURNAME = {"EBACKI", "FABACKI", "GABACKA", "HABACKA"};
+    static final String[] STUDENT_NAME = {"HUBERT", "MARIAN", "JOLA", "EDYTA"};
+
     static final String CREATE_SUBJECT_SQL =
             " CREATE TABLE PRZEDMIOT( " +
                     " IDP NUMBER NOT NULL, " +
