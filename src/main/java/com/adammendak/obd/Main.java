@@ -1,24 +1,19 @@
 package com.adammendak.obd;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import static com.adammendak.obd.DBConstants.*;
 
 public class Main {
 
-    private static final String DRIVER_NAME = "oracle.jdbc.driver.OracleDriver";
-    private static final String URL = "jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf";
-    private static final String LOGIN_PASSWORD = "amendak";
-
     public static void main(String[] args) {
         checkDriver();
-        connection();
+        BootstrapService.createDBTables();
+//        createTable();
     }
 
     private static void checkDriver() {
         try {
             Class c = Class.forName(DRIVER_NAME);
-            System.out.println("Driver Added.");
+            System.out.println("Driver:");
             System.out.println("Package = " + c.getPackage());
             System.out.println("Name = " + c.getName());
         } catch (ClassNotFoundException e) {
@@ -27,14 +22,27 @@ public class Main {
         }
     }
 
-    private static void connection() {
-        try {
-            Connection connection = DriverManager.getConnection(URL, LOGIN_PASSWORD, LOGIN_PASSWORD);
-            System.out.println("AutoCommit = " + connection.getAutoCommit());
-            System.out.println("Connection success.");
-        } catch (SQLException ex) {
-            System.out.println("Failed to connect.");
-            ex.printStackTrace();
-        }
+    private static void createTable() {
+//        String sql1 = "CREATE TABLE DZIALY (NR_DZIALU INTEGER NOT NULL, " +
+//                " NAZWA_DZIALU VARCHAR2(30) NOT NULL, " +
+//                " SIEDZIBA VARCHAR2(50) NOT NULL)";
+//        String sql1 = "INSERT INTO DZIALY(NR_DZIALU, NAZWA_DZIALU, SIEDZIBA) " +
+//                " VALUES (1, 'DYREKCJA', 'ul.1 Stycznia 23')";
+//        String sql1 = "UPDATE DZIALY SET NR_DZIALU = 10 WHERE NR_DZIALU = 1";
+//        String sql1 = "DELETE FROM DZIALY WHERE NR_DZIALU = 1";
+//        try {
+//            Connection connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
+//            System.out.println("AutoCommit = " + connection.getAutoCommit());
+//            System.out.println("Connection success.");
+//            Statement statement = connection.createStatement();
+//            System.out.println("Execute = " + statement.execute(sql1));
+////            System.out.println("Execute = " + statement.executeUpdate(sql1));
+//            statement.close();
+//            connection.close();
+//            System.out.println("Success.");
+//        } catch (SQLException ex) {
+//            System.out.println("Failed to connect.");
+//            ex.printStackTrace();
+//        }
     }
 }
