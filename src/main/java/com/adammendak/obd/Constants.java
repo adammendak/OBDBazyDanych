@@ -2,13 +2,13 @@ package com.adammendak.obd;
 
 public class Constants {
     static final String DRIVER_NAME = "oracle.jdbc.driver.OracleDriver";
-    //    private static final String URL = "jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf";
-    static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
+    static final String URL = "jdbc:oracle:thin:@ora3.elka.pw.edu.pl:1521:ora3inf";
     static final String LOGIN = "amendak";
-    static final String PASSWORD = "Warahi1986";
+    static final String PASSWORD = "amendak";
 
     static final String INSERT_TEMPLATE = "INSERT INTO %s VALUES(%s)";
     static final String TRUNCATE_TEMPLATE = "TRUNCATE TABLE %s";
+    static final String SELECT_TEMPLATE = "SELECT COUNT(*) FROM %s WHERE %s = %s";
 
     static final String[] SUBJECTS = {"BIOLOGIA", "MATEMATYKA", "POLSKI", "ANGIELSKI"};
     static final String[] TEACHER_NAMES = {"ADAM", "MACIEK", "RENATA", "ALICJA"};
