@@ -6,6 +6,8 @@ public class Main {
         DDLBootstrapService.checkDriver();
         DDLBootstrapService.createDBTables();
         DMLBootstrapService.insertDummyData();
+
+        System.out.printf("## STARTING PROGRAM ##");
     }
 
 }

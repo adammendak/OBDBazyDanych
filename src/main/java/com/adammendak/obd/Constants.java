@@ -10,29 +10,25 @@ public class Constants {
     static final String CREATE_SUBJECT_SQL =
             " CREATE TABLE PRZEDMIOT( " +
                     " IDP NUMBER NOT NULL, " +
-                    " NAZWA_PRZEDMIOTU VARCHAR2(20 CHAR) NOT NULL, " +
-                    " ID_OCENIANIE NUMBER)";
+                    " NAZWA_PRZEDMIOTU VARCHAR2(20 CHAR) NOT NULL)";
 
     static final String CREATE_STUDENT_SQL =
             " CREATE TABLE UCZEN( " +
                     " IDU NUMBER NOT NULL, " +
                     " NAZWISKO_UCZNIA VARCHAR2(30 CHAR) NOT NULL , " +
-                    " IMIE_UCZNIA VARCHAR2(20 CHAR) NOT NULL, " +
-                    " ID_OCENIANIE NUMBER)";
+                    " IMIE_UCZNIA VARCHAR2(20 CHAR) NOT NULL)";
 
     static final String CREATE_GRADE_SQL =
             " CREATE TABLE OCENA ( " +
                     " IDO NUMBER NOT NULL, " +
                     " WARTOSCI_OPISOWA VARCHAR2(20 CHAR) NOT NULL, " +
-                    " WARTOSC_NUMERYCZNA FLOAT NOT NULL," +
-                    " ID_OCENIANIE NUMBER)";
+                    " WARTOSC_NUMERYCZNA FLOAT NOT NULL)";
 
     static final String CREATE_TEACHER_SQL =
             " CREATE TABLE NAUCZYCIEL ( " +
                     " IDN NUMBER NOT NULL, " +
                     " NAZWISKO_NAUCZYCIELA VARCHAR2(30 CHAR) NOT NULL, " +
-                    " IMIE_NAUCZYCIELA VARCHAR2(20 CHAR) NOT NULL, " +
-                    " ID_OCENIANIE NUMBER)";
+                    " IMIE_NAUCZYCIELA VARCHAR2(20 CHAR) NOT NULL)";
 
     static final String CREATE_GRADING_SQL =
             " CREATE TABLE OCENIANIE ( " +
