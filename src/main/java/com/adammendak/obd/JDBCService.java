@@ -11,11 +11,9 @@ class JDBCService {
                 "typeOfGrade = " + typeOfGrade + ", idn = " + idn + ", ido = " + ido + ", idu = " + idu + ", idp = " + idp);
 
         try (
-                Connection connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
-                Statement statement = connection.createStatement()
+                Statement statement = Main.connection.createStatement()
         ) {
-
-            Boolean result = checkConstraints(typeOfGrade, idn, ido, idu, idp);
+            Boolean result = checkConstraints(idn, ido, idu, idp);
             if (!result) {
                 return;
             }
@@ -33,9 +31,9 @@ class JDBCService {
         System.out.println("####INSERT SUCCESSFULL\n");
     }
 
-    private static Boolean checkConstraints(String typeOfGrade, String idn, String ido, String idu, String idp) {
-        try (Connection connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
-             Statement statement = connection.createStatement()
+    private static Boolean checkConstraints(String idn, String ido, String idu, String idp) {
+        try (
+             Statement statement = Main.connection.createStatement()
         ) {
             ResultSet rs1 = statement.executeQuery(String.format(SELECT_TEMPLATE, "NAUCZYCIEL", "IDN", idn));
             rs1.next();

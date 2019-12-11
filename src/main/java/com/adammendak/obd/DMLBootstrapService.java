@@ -13,6 +13,7 @@ class DMLBootstrapService {
         ) {
             System.out.println("####[2/2]Database Inserting Dummy Data Step");
             System.out.println("####[2/2]Database Inserting Subject Data");
+            statement.executeUpdate(String.format(TRUNCATE_TEMPLATE, "OCENIANIE"));
 
             statement.executeUpdate(String.format(TRUNCATE_TEMPLATE, "PRZEDMIOT"));
             for (int i = 1; i < 5; i++) {
