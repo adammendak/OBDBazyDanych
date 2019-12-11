@@ -1,7 +1,5 @@
 package com.adammendak.obd;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -9,13 +7,13 @@ import static com.adammendak.obd.Constants.*;
 
 class DMLBootstrapService {
 
-    static void insertDummyData() {
+    static void insertDummyData() throws SQLException {
         try (
-                Connection connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
-                Statement statement = connection.createStatement()
+                Statement statement = Main.connection.createStatement()
         ) {
             System.out.println("####[2/2]Database Inserting Dummy Data Step");
             System.out.println("####[2/2]Database Inserting Subject Data");
+
             statement.executeUpdate(String.format(TRUNCATE_TEMPLATE, "PRZEDMIOT"));
             for (int i = 1; i < 5; i++) {
                 String sql = String.format(INSERT_TEMPLATE, "PRZEDMIOT",
@@ -48,8 +46,9 @@ class DMLBootstrapService {
             }
 
         } catch (SQLException ex) {
-            System.out.println("####Failed to connect");
+            System.out.println("####Failed to insert data into tables");
             ex.printStackTrace();
+            throw ex;
         }
         System.out.println("####[2/2]Database Inserting Dummy Data Step Finished");
     }

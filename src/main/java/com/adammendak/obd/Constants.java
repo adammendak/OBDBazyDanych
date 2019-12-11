@@ -14,32 +14,32 @@ public class Constants {
     static final String[] TEACHER_NAMES = {"ADAM", "MACIEK", "RENATA", "ALICJA"};
     static final String[] TEACHER_SURNAMES = {"ABACKI", "BABACKI", "CABACKA", "DABACKA"};
     static final String[] GRADE_DESCRIPTIVE = {"NIEDOSTATECZNY", "MIERNY", "DOSTATECZNY", "DOBRY", "BARDZO DOBRY", "CELUJACY"};
-    static final String[] GRADE_FLOAT = {"1.0", "2.0", "3.0", "4.0", "5.0", "6.0"};
+    static final String[] GRADE_FLOAT = {"1.0", "1.5", "2.0", "2.5", "3.0", "3.5", "4.0", "4.5", "5.0", "5.5", "6.0"};
     static final String[] STUDENT_SURNAME = {"EBACKI", "FABACKI", "GABACKA", "HABACKA"};
     static final String[] STUDENT_NAME = {"HUBERT", "MARIAN", "JOLA", "EDYTA"};
 
     static final String CREATE_SUBJECT_SQL =
             " CREATE TABLE PRZEDMIOT( " +
                     " IDP NUMBER NOT NULL, " +
-                    " NAZWA_PRZEDMIOTU VARCHAR2(20 CHAR) NOT NULL)";
+                    " NAZWA_PRZEDMIOTU CHAR(20) NOT NULL)";
 
     static final String CREATE_STUDENT_SQL =
             " CREATE TABLE UCZEN( " +
                     " IDU NUMBER NOT NULL, " +
-                    " NAZWISKO_UCZNIA VARCHAR2(30 CHAR) NOT NULL , " +
-                    " IMIE_UCZNIA VARCHAR2(20 CHAR) NOT NULL)";
+                    " NAZWISKO_UCZNIA CHAR(30) NOT NULL , " +
+                    " IMIE_UCZNIA CHAR(20) NOT NULL)";
 
     static final String CREATE_GRADE_SQL =
             " CREATE TABLE OCENA ( " +
                     " IDO NUMBER NOT NULL, " +
-                    " WARTOSCI_OPISOWA VARCHAR2(20 CHAR) NOT NULL, " +
+                    " WARTOSCI_OPISOWA CHAR(20) NOT NULL, " +
                     " WARTOSC_NUMERYCZNA FLOAT NOT NULL)";
 
     static final String CREATE_TEACHER_SQL =
             " CREATE TABLE NAUCZYCIEL ( " +
                     " IDN NUMBER NOT NULL, " +
-                    " NAZWISKO_NAUCZYCIELA VARCHAR2(30 CHAR) NOT NULL, " +
-                    " IMIE_NAUCZYCIELA VARCHAR2(20 CHAR) NOT NULL)";
+                    " NAZWISKO_NAUCZYCIELA CHAR(30) NOT NULL, " +
+                    " IMIE_NAUCZYCIELA CHAR(20) NOT NULL)";
 
     static final String CREATE_GRADING_SQL =
             " CREATE TABLE OCENIANIE ( " +
