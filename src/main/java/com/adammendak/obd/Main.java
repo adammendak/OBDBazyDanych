@@ -45,35 +45,69 @@ public class Main {
         System.out.println("## STARTING PROGRAM ##");
 
         while (PROGRAM_RUNNING) {
-            System.out.println("Please input data[type of grade ('C' or 'S'), idn, ido, idu, idp]." +
+            System.out.println("Please input data[type of grade case sensitive('C' or 'S'), idn, ido, idu, idp]." +
                     " To end program please type 'END'.");
             System.out.println("Please input Type Of Grade[C=CZESCIOWA, S=SEMESTRALNA] =");
-            String gradeType = checkForIndexInput(scanner.next());
+            String gradeInput = scanner.next();
+            checkForEndInput(gradeInput);
             if (!PROGRAM_RUNNING) break;
+            if (!gradeInput.equals("C") && !gradeInput.equals("S")) {
+                System.out.println("Wrong input data. Try again");
+
+                continue;
+            }
 
             System.out.println("Please input IDN =");
-            String idn = checkForIndexInput(scanner.next());
+            String idnInput = scanner.next();
+            checkForEndInput(idnInput);
             if (!PROGRAM_RUNNING) break;
+            try {
+                Integer.parseInt(idnInput);
+            } catch (NumberFormatException ex) {
+                System.out.println("Wrong input data, only numbers. Try again");
+                continue;
+            }
 
             System.out.println("Please input IDO =");
-            String ido = checkForIndexInput(scanner.next());
+            String idoInput = scanner.next();
+            checkForEndInput(idoInput);
             if (!PROGRAM_RUNNING) break;
+            try {
+                Integer.parseInt(idoInput);
+            } catch (NumberFormatException ex) {
+                System.out.println("Wrong input data, only numbers. Try again");
+                continue;
+            }
 
             System.out.println("Please input IDU =");
-            String idu = checkForIndexInput(scanner.next());
+            String iduInput = scanner.next();
+            checkForEndInput(iduInput);
             if (!PROGRAM_RUNNING) break;
+            try {
+                Integer.parseInt(iduInput);
+            } catch (NumberFormatException ex) {
+                System.out.println("Wrong input data, only numbers. Try again");
+                continue;
+            }
 
             System.out.println("Please input IDP =");
-            String idp = checkForIndexInput(scanner.next());
+            String idpInput = scanner.next();
+            checkForEndInput(idpInput);
             if (!PROGRAM_RUNNING) break;
+            try {
+                Integer.parseInt(idpInput);
+            } catch (NumberFormatException ex) {
+                System.out.println("Wrong input data, only numbers. Try again");
+                continue;
+            }
 
-            JDBCService.InsertGrading(gradeType, idn, ido, idu, idp);
+            JDBCService.InsertGrading(gradeInput, idnInput, idoInput, iduInput, idpInput);
         }
 
         System.out.println("## PROGRAM ENDING ##");
     }
 
-    private static String checkForIndexInput(String next) {
+    private static String checkForEndInput(String next) {
         if (next.equals("END")) {
             PROGRAM_RUNNING = false;
         }
