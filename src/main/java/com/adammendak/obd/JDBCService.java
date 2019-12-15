@@ -7,6 +7,7 @@ import static com.adammendak.obd.Constants.*;
 class JDBCService {
 
     private static final String CONSTRAINT_VIOLATION = "ORA-02291: integrity constraint violated - %s parent key not found";
+    private static Boolean result = false;
 
     static void InsertGrading(String typeOfGrade, String idn, String ido, String idu, String idp) {
         System.out.println("####INSERTING GRADING INTO DATABASE WITH PARAMETERS " +
@@ -15,7 +16,7 @@ class JDBCService {
         try (
                 Statement statement = Main.connection.createStatement()
         ) {
-            if(!checkConstraints(idn, ido, idu, idp)) {
+            if (!checkConstraints(idn, ido, idu, idp)) {
                 return;
             }
 
@@ -37,41 +38,40 @@ class JDBCService {
         System.out.println("####INSERT SUCCESSFULL\n");
     }
 
-    private static Boolean checkConstraints(String idn, String ido, String idu, String idp) throws ForeignKeySimulationException, SQLException {
-        try (
-             Statement statement = Main.connection.createStatement()
-        ) {
-            ResultSet rs1 = statement.executeQuery(String.format(SELECT_TEMPLATE, "IDN", "NAUCZYCIEL", "IDN", idn));
-            Boolean result = rs1.next();
-            if(!result) {
-                throw new ForeignKeySimulationException(String.format(CONSTRAINT_VIOLATION, "(NAUCZYCIEL_FK)"));
-            }
-            rs1.close();
+    private static Boolean checkConstraints(String idn, String ido, String idu, String idp)
+            throws ForeignKeySimulationException, SQLException {
 
-            ResultSet rs2 = statement.executeQuery(String.format(SELECT_TEMPLATE, "IDO", "OCENA", "IDO", ido));
-            result =rs2.next();
-            if(!result) {
-                throw new ForeignKeySimulationException(String.format(CONSTRAINT_VIOLATION, "OCENA_FK"));
-            }
-            rs2.close();
+        Statement statement = Main.connection.createStatement();
 
-            ResultSet rs3 = statement.executeQuery(String.format(SELECT_TEMPLATE, "IDP", "PRZEDMIOT", "IDP", idp));
-            result =rs3.next();
-            if(!result) {
-                throw new ForeignKeySimulationException(String.format(CONSTRAINT_VIOLATION, "(PRZEDMIOT_FK)"));
-            }
-            rs3.close();
-
-            ResultSet rs4 = statement.executeQuery(String.format(SELECT_TEMPLATE, "IDU", "UCZEN", "IDU", idu));
-            result =rs4.next();
-            if(!result) {
-                throw new ForeignKeySimulationException(String.format(CONSTRAINT_VIOLATION, "(UCZEN_FK)"));
-            }
-            rs4.close();
-
-        } catch (SQLException ex) {
-            throw ex;
+        ResultSet rs1 = statement.executeQuery(String.format(SELECT_TEMPLATE, "IDN", "NAUCZYCIEL", "IDN", idn));
+        result = rs1.next();
+        if (!result) {
+            throw new ForeignKeySimulationException(String.format(CONSTRAINT_VIOLATION, "(NAUCZYCIEL_FK)"));
         }
-        return true;
+        rs1.close();
+
+        ResultSet rs2 = statement.executeQuery(String.format(SELECT_TEMPLATE, "IDO", "OCENA", "IDO", ido));
+        result = rs2.next();
+        if (!result) {
+            throw new ForeignKeySimulationException(String.format(CONSTRAINT_VIOLATION, "OCENA_FK"));
+        }
+        rs2.close();
+
+        ResultSet rs3 = statement.executeQuery(String.format(SELECT_TEMPLATE, "IDP", "PRZEDMIOT", "IDP", idp));
+        result = rs3.next();
+        if (!result) {
+            throw new ForeignKeySimulationException(String.format(CONSTRAINT_VIOLATION, "(PRZEDMIOT_FK)"));
+        }
+        rs3.close();
+
+        ResultSet rs4 = statement.executeQuery(String.format(SELECT_TEMPLATE, "IDU", "UCZEN", "IDU", idu));
+        result = rs4.next();
+        if (!result) {
+            throw new ForeignKeySimulationException(String.format(CONSTRAINT_VIOLATION, "(UCZEN_FK)"));
+        }
+        rs4.close();
+
+        statement.close();
+        return result;
     }
 }
