@@ -32,7 +32,7 @@ class DMLBootstrapService {
 
             System.out.println("####[2/2]Database Inserting Grade Data");
             statement.executeUpdate(String.format(TRUNCATE_TEMPLATE, "OCENA"));
-            for (int i = 1; i < 7; i++) {
+            for (int i = 1; i < 12; i++) {
                 String sql = String.format(INSERT_TEMPLATE, "OCENA",
                         i + ", '" + GRADE_DESCRIPTIVE[i - 1] + "', '" + GRADE_FLOAT[i - 1] + "'");
                 statement.executeUpdate(sql);

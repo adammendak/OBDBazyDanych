@@ -8,12 +8,13 @@ public class Constants {
 
     static final String INSERT_TEMPLATE = "INSERT INTO %s VALUES(%s)";
     static final String TRUNCATE_TEMPLATE = "TRUNCATE TABLE %s";
-    static final String SELECT_TEMPLATE = "SELECT COUNT(*) FROM %s WHERE %s = %s";
+    static final String SELECT_TEMPLATE = "SELECT %s FROM %s WHERE %s = %s";
 
     static final String[] SUBJECTS = {"BIOLOGIA", "MATEMATYKA", "POLSKI", "ANGIELSKI"};
     static final String[] TEACHER_NAMES = {"ADAM", "MACIEK", "RENATA", "ALICJA"};
     static final String[] TEACHER_SURNAMES = {"ABACKI", "BABACKI", "CABACKA", "DABACKA"};
-    static final String[] GRADE_DESCRIPTIVE = {"NIEDOSTATECZNY", "MIERNY", "DOSTATECZNY", "DOBRY", "BARDZO DOBRY", "CELUJACY"};
+    static final String[] GRADE_DESCRIPTIVE = {"NIEDOSTATECZNY", "NIEDOSTATECZNY", "MIERNY", "MIERNY", "DOSTATECZNY",
+            "DOSTATECZNY", "DOBRY", "DOBRY", "BARDZO DOBRY", "BARDZO DOBRY", "CELUJACY"};
     static final String[] GRADE_FLOAT = {"1.0", "1.5", "2.0", "2.5", "3.0", "3.5", "4.0", "4.5", "5.0", "5.5", "6.0"};
     static final String[] STUDENT_SURNAME = {"EBACKI", "FABACKI", "GABACKA", "HABACKA"};
     static final String[] STUDENT_NAME = {"HUBERT", "MARIAN", "JOLA", "EDYTA"};
