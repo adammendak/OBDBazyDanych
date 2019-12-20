@@ -6,6 +6,8 @@ public class Constants {
     static final String LOGIN = "amendak";
     static final String PASSWORD = "amendak";
 
+    static final String CONSTRAINT_VIOLATION = "ORA-02291: integrity constraint violated - %s parent key not found";
+
     static final String INSERT_TEMPLATE = "INSERT INTO %s VALUES(%s)";
     static final String TRUNCATE_TEMPLATE = "TRUNCATE TABLE %s";
     static final String SELECT_TEMPLATE = "SELECT %s FROM %s WHERE %s = %s";
