@@ -8,7 +8,7 @@ class JDBCService {
 
     private static ResultSet rs;
 
-    static void InsertGrading(String typeOfGrade, String idn, String ido, String idu, String idp) {
+    static void InsertGrading(String typeOfGrade, String idn, String ido, String idu, String idp) throws SQLException {
         System.out.println("####INSERTING GRADING INTO DATABASE WITH PARAMETERS " +
                 "typeOfGrade = " + typeOfGrade + ", idn = " + idn + ", ido = " + ido + ", idu = " + idu + ", idp = " + idp);
 
@@ -19,15 +19,17 @@ class JDBCService {
             String sql = String.format(INSERT_TEMPLATE, "OCENIANIE",
                     "'" + typeOfGrade + "', '" + idn + "', '" + ido + "', '" + idu + "', '" + idp + "'");
             statement.executeUpdate(sql);
-
+            rs.close();
         } catch (SQLException ex) {
             System.out.println("####Failed to execute query");
             ex.printStackTrace();
+            rs.close();
             return;
         } catch (ForeignKeySimulationException ex) {
             System.out.println("####Failed to execute query");
             System.out.println(ex.getMessage());
             System.out.println();
+            rs.close();
             return;
         }
 
@@ -37,7 +39,7 @@ class JDBCService {
     private static void checkConstraints(String idn, String ido, String idu, String idp)
             throws ForeignKeySimulationException, SQLException {
 
-        try(Statement statement = Main.connection.createStatement()) {
+        try (Statement statement = Main.connection.createStatement()) {
             rs = statement.executeQuery(String.format(SELECT_TEMPLATE, "IDN", "NAUCZYCIEL", "IDN", idn));
             if (!rs.next()) {
                 throw new ForeignKeySimulationException(String.format(CONSTRAINT_VIOLATION, "(NAUCZYCIEL_FK)"));

@@ -53,7 +53,6 @@ public class Main {
             if (!PROGRAM_RUNNING) break;
             if (!gradeInput.equals("C") && !gradeInput.equals("S")) {
                 System.out.println("Wrong input data. Try again");
-
                 continue;
             }
 
@@ -101,7 +100,13 @@ public class Main {
                 continue;
             }
 
-            JDBCService.InsertGrading(gradeInput, idnInput, idoInput, iduInput, idpInput);
+            try {
+                JDBCService.InsertGrading(gradeInput, idnInput, idoInput, iduInput, idpInput);
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Finishing program");
+                return;
+            }
         }
 
         System.out.println("## PROGRAM ENDING ##");
