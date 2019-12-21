@@ -44,21 +44,25 @@ class JDBCService {
             if (!rs.next()) {
                 throw new ForeignKeySimulationException(String.format(CONSTRAINT_VIOLATION, "(NAUCZYCIEL_FK)"));
             }
+            rs.close();
 
             rs = statement.executeQuery(String.format(SELECT_TEMPLATE, "IDO", "OCENA", "IDO", ido));
             if (!rs.next()) {
                 throw new ForeignKeySimulationException(String.format(CONSTRAINT_VIOLATION, "OCENA_FK"));
             }
+            rs.close();
 
             rs = statement.executeQuery(String.format(SELECT_TEMPLATE, "IDP", "PRZEDMIOT", "IDP", idp));
             if (!rs.next()) {
                 throw new ForeignKeySimulationException(String.format(CONSTRAINT_VIOLATION, "(PRZEDMIOT_FK)"));
             }
+            rs.close();
 
             rs = statement.executeQuery(String.format(SELECT_TEMPLATE, "IDU", "UCZEN", "IDU", idu));
             if (!rs.next()) {
                 throw new ForeignKeySimulationException(String.format(CONSTRAINT_VIOLATION, "(UCZEN_FK)"));
             }
+            rs.close();
         }
     }
 }
